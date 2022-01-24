@@ -15,6 +15,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: 5) {
+            
+            Spacer()
+            
+            Text("Password Generator")
+                .font(.largeTitle)
+            
+            Spacer()
+            
             HStack {
                 Button {
                     password = ""
@@ -31,9 +39,12 @@ struct ContentView: View {
                     .buttonBorderShape(.automatic)
                     .buttonStyle(.borderedProminent)
                 
-                Stepper("Digits: \(digits)", value: $digits, in: 1...100)
+                Stepper("Digits: \(digits)", value: $digits, in: 1...256)
                     .padding()
             }
+            
+            Spacer()
+            
             HStack {
                 Text(password)
                     .textSelection(.enabled)
@@ -44,6 +55,8 @@ struct ContentView: View {
                     Image(systemName: "doc.on.doc")
                 }
             }
+            
+            Spacer()
         }
     }
 }
@@ -51,5 +64,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewDevice("iPhone 13 Pro Max")
     }
 }
