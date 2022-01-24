@@ -10,27 +10,40 @@ import SwiftUI
 struct ContentView: View {
     
     @State public var digits: Int = 8
-    @State public var characters: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!\"§$%&/()=?"
+    @State public var characters: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!§$%&/()=?"
     @State public var password: String = "[PASSWORD]"
     
     var body: some View {
         VStack(spacing: 5) {
-            Button {
-                password = ""
-                for _ in Range(0...digits) {
-                    let index = Int.random(in: 0...36)
-                    let char = characters[characters.index(characters.startIndex, offsetBy: index)]
-                    
-                    password += String(char)
-                    
+            HStack {
+                Button {
+                    password = ""
+                    for _ in Range(1...digits) {
+                        let index = Int.random(in: 0...71)
+                        let char = characters[characters.index(characters.startIndex, offsetBy: index)]
+                        
+                        password += String(char)
+                    }
+                } label: {
+                    Text("Generate Password")
                 }
-            } label: {
-                Text("Generate Password")
+                    .padding()
+                    .buttonBorderShape(.automatic)
+                    .buttonStyle(.borderedProminent)
+                
+                Stepper("Digits: \(digits)", value: $digits, in: 1...100)
+                    .padding()
             }
-                .padding()
-                .buttonBorderShape(.automatic)
-                .buttonStyle(.borderedProminent)
-            Text(password)
+            HStack {
+                Text(password)
+                    .textSelection(.enabled)
+                
+                Button {
+                    UIPasteboard.general.string = password
+                } label: {
+                    Image(systemName: "doc.on.doc")
+                }
+            }
         }
     }
 }
