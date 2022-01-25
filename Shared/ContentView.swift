@@ -11,7 +11,7 @@ struct ContentView: View {
     
     @State public var digits: Int = 8
     @State public var characters: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!§$%&/()=?"
-    @State public var password: String = "[PASSWORD]"
+    @State public var password: String = ""
     
     var body: some View {
         VStack(spacing: 5) {
@@ -46,7 +46,7 @@ struct ContentView: View {
             Spacer()
             
             HStack {
-                Text(password)
+                Text("Your password is: \(password)")
                     .textSelection(.enabled)
                 
                 Button {
@@ -64,6 +64,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .previewDevice("iPhone 13 Pro Max")
     }
 }
