@@ -4,4 +4,4 @@ To use the app, run it on an iPhone or a simulator device.
 
 Then you can use it:
 
-![picture](/desktop/"pass gen screens"/"start screen")
+![picture](/Users/okso/Desktop/pass\ gen\ screens)
