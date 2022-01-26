@@ -46,8 +46,11 @@ struct ContentView: View {
             Spacer()
             
             HStack {
-                Text("Your password is: \(password)")
-                    .textSelection(.enabled)
+                HStack {
+                    Text("Your password is:")
+                    Text(password)
+                        .textSelection(.enabled)
+                }
                 
                 Button {
                     UIPasteboard.general.string = password
